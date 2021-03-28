@@ -32,6 +32,7 @@ function getWeatherByCity(city) {
         .then(function (data) {
             console.log(data)
             renderForeCast(data)
+            
         })
     // return data for api call 
     // return ""
@@ -40,17 +41,18 @@ function getWeatherByCity(city) {
 // render forcast
 function renderForeCast(data) {
     console.log("rendering 5 day forecast");
-    console.log(data)
-    forecastEl.innerHTML = ""
-    var forecastData = data.list.slice(0,5)
+    console.log(data);
+    forecastEl.innerHTML = "";
+    var forecastData = data.list.slice(0, 5);
+    console.log(forecastData);
 
 
     for (let i = 0; i < forecastData.length; i++) {
-        const forecast = forecastData[i];
+        let forecast = forecastData[i];
         forecastEl.innerHTML += `
     <div class="card" style="width: 18rem;">
     <div class="card-body">
-    <h5 class="card-title">${new Date(forecast.dt_txt).toLocaleDateString()}</h5>
+    <h5 class="card-title">${new Date(forecast.dt*1000).toLocaleDateString()}</h5>
     <p class="card-text">Temp ${forecast.main.temp_max} F</p>
     <p class="card-text">Humidity ${forecast.main.humidity} %</p>
     </div>
